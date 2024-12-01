@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-fn part1(mut left_list: Vec<u32>, mut right_list: Vec<u32>) -> u32 {
+fn part1(mut left_list: Vec<usize>, mut right_list: Vec<usize>) -> usize {
 
     left_list.sort();
     right_list.sort();
@@ -11,9 +11,9 @@ fn part1(mut left_list: Vec<u32>, mut right_list: Vec<u32>) -> u32 {
     result
 }
 
-fn part2(left_list: Vec<u32>, right_list: Vec<u32>) -> u32 {
+fn part2(left_list: Vec<usize>, right_list: Vec<usize>) -> usize {
 
-    let mut occurance_map: HashMap<u32, u32> = HashMap::new();
+    let mut occurance_map: HashMap<usize, usize> = HashMap::new();
     
     for id in right_list {
         let count = occurance_map.entry(id).or_insert(0);
@@ -29,8 +29,8 @@ fn part2(left_list: Vec<u32>, right_list: Vec<u32>) -> u32 {
 fn main() {
     let input = std::fs::read_to_string("day01/src/input.txt").unwrap();
 
-    let mut left_list: Vec<u32> = Vec::new();
-    let mut right_list: Vec<u32> = Vec::new();
+    let mut left_list: Vec<usize> = Vec::new();
+    let mut right_list: Vec<usize> = Vec::new();
 
     for line in input.lines() {
         let splitted: Vec<&str> = line.split_whitespace().collect();
