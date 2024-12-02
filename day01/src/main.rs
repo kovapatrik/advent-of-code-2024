@@ -1,28 +1,29 @@
 use std::collections::HashMap;
 
 fn part1(mut left_list: Vec<usize>, mut right_list: Vec<usize>) -> usize {
-
     left_list.sort();
     right_list.sort();
 
-    let result = left_list.iter().zip(right_list.iter())
-        .fold(0,|acc, (left, right)| acc + left.abs_diff(*right));
+    let result = left_list
+        .iter()
+        .zip(right_list.iter())
+        .fold(0, |acc, (left, right)| acc + left.abs_diff(*right));
 
     result
 }
 
 fn part2(left_list: Vec<usize>, right_list: Vec<usize>) -> usize {
-
     let mut occurance_map: HashMap<usize, usize> = HashMap::new();
-    
+
     for id in right_list {
         let count = occurance_map.entry(id).or_insert(0);
         *count += 1;
     }
 
-    let result = left_list.iter()
-        .fold(0, |acc, id| acc + (id * occurance_map.get(id).unwrap_or(&0)));
-    
+    let result = left_list.iter().fold(0, |acc, id| {
+        acc + (id * occurance_map.get(id).unwrap_or(&0))
+    });
+
     result
 }
 
